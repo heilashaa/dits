@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Component
-@Profile("dev")
+@Profile("dev-ah")
 public class InitData {
 
     private final DataSource dataSource;
@@ -23,7 +23,7 @@ public class InitData {
     @PostConstruct
     public void populateSampleData() throws SQLException {
         ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        Resource resource = new ClassPathResource("db-data.sql");
+        Resource resource = new ClassPathResource("init-data-dev-ah.sql");
         populator.addScript(resource);
         populator.populate(dataSource.getConnection());
     }

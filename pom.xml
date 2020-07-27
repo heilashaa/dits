@@ -149,9 +149,21 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <id>dev</id>
+            <id>dev-ah</id>
             <properties>
-                <spring.profiles.active>dev</spring.profiles.active>
+                <spring.profiles.active>dev-ah</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev-aa</id>
+            <properties>
+                <spring.profiles.active>dev-aa</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev-er</id>
+            <properties>
+                <spring.profiles.active>dev-er</spring.profiles.active>
             </properties>
         </profile>
         <profile>
