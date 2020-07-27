@@ -1,16 +1,9 @@
 package com.dev_incubator.dits.persistence.entity;
 
-import com.sun.javafx.fxml.PropertyNotFoundException;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.Session;
-import org.hibernate.annotations.Proxy;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -44,20 +37,3 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "role_id")}, inverseForeignKey = @ForeignKey(name = "user_role_FK"))
     private Set<Role> roles = new HashSet<>();
 }
-
-
-//    @ManyToOne(fetch = FetchType.LAZY,  optional = false)
-//    @JoinColumn(name = "category_id", nullable = false, foreignKey = @ForeignKey(name = "campaign_category_FK"))
-//    private Category category;
-//
-
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "campaign")
-//    private Set<Bonus> bonuses = new HashSet<>();
-//
-//
-//    @ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
-//    private Set<Campaign> campaigns = new HashSet<>();
-//
-//
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade = CascadeType.ALL)
-//    private Set<Campaign> campaigns = new HashSet<>();

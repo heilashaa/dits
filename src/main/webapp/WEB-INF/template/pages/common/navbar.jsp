@@ -39,7 +39,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"> Topics </a>
+                <a class="nav-link" href="<%=application.getContextPath()%>/topics"> Topics </a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Profile </a>

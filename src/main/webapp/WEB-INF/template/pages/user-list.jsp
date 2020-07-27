@@ -57,3 +57,6 @@
 <div class="mt-3 text-right">
     <a href="<%=application.getContextPath()%>/users/create" class="btn btn-success">Create user</a>
 </div>
+<div class="mt-3 text-right pr-2">
+    <a href="<%=application.getContextPath()%>/" class="text-success">Back to main page</a>
+</div>
