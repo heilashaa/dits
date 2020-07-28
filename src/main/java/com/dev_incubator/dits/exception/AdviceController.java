@@ -29,9 +29,9 @@ public class AdviceController {
         return "redirect:" + request.getRequestURI();
     }
 
-    @ExceptionHandler({UserNotFoundException.class})
+    @ExceptionHandler({UserNotFoundException.class, TopicNotFoundException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public String handleUserNotFoundException(UserNotFoundException e, HttpServletRequest request) {
+    public String handleUserNotFoundException(AppException e, HttpServletRequest request) {
         return "400";
     }
 

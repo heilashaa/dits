@@ -7,4 +7,10 @@ import java.util.List;
 public interface TopicService {
 
     List<TopicDto> getAllTopics();
+
+    TopicDto getTopicById(Long id);
+
+    void deleteTopicById(Long id);
+
+    boolean saveTopic(TopicDto topicDto);
 }

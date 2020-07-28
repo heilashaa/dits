@@ -20,6 +20,7 @@
                                 <form:input path="name" id="name"  class="form-control" autocomplete="off"/>
                                 <label for="name" class="font-weight-light">Name</label>
                                 <div class="text-danger font-weight-light font-small"><form:errors path="name"/></div>
+                                <div class="text-danger font-weight-light font-small">${topicNameError}</div>
                             </div>
                         </div>
                         <div class="col-md-9">
