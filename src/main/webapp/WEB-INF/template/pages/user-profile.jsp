@@ -5,14 +5,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <div class="row mt-3">
     <div class="col">
-        <h2 class="title h2 text-center">Please, <c:if test="${!empty user.id}">update</c:if><c:if test="${empty user.id}">create</c:if> user</h2>
+        <h2 class="title h2 text-center">Here u can find & edit your personal data</h2>
     </div>
 </div>
 <div class="row d-flex justify-content-center mt-3">
     <div class="col-md-6">
         <div class="card">
             <div class="card-body pl-5 pr-5">
-                <form:form modelAttribute="user" method="post" action="/users/create">
+                <form:form modelAttribute="user" method="post" action="/users/profile">
                     <form:input path="id" id="id" type="hidden"/>
                     <div class="md-form">
                         <form:input path="firstName" id="firstName"  class="form-control" autocomplete="off"/>
@@ -45,26 +45,16 @@
                         <label for="password" class="font-weight-light">Password</label>
                         <div class="text-danger font-weight-light font-small"><form:errors path="password"/></div>
                     </div>
-                    <p class="text-center h4 mt-4">Choose authorities:</p>
-                    <div class="mt-3 text-center">
-                        <c:forEach items="${roleList}" var="role">
-                            <div class="custom-control custom-checkbox custom-control-inline">
-                                <form:checkbox path="roles" value="${role.name}" class="custom-control-input" id="${role.name}"/>
-                                <label class="custom-control-label" for="${role.name}">${fn:substring(role.name, 0, 1)}${fn:toLowerCase(fn:substring(role.name, 1, -1))}</label>
-                            </div>
-                        </c:forEach>
-                        <div class="text-danger font-weight-light font-small"><form:errors path="roles"/></div>
-                    </div>
-                    <p class="text-center h4 mt-3">Also you can block the user:</p>
-                    <div class="custom-control custom-switch mt-3 text-center">
-                        <form:checkbox path="enabled" class="custom-control-input" id="enabled"/>
-                        <label class="custom-control-label" for="enabled">User unblock</label>
-                    </div>
+                    <h5>Your authorities:
+                            <c:forEach items="${user.roles}" var="role">
+                                <span class="badge badge-success badge-pill mt-2"><c:out value="${role}" /></span>
+                            </c:forEach>
+                    </h5>
                     <div class="text-center py-2 mt-3">
-                        <button class="btn btn-success" name="submit" type="submit"><c:if test="${!empty user.id}">Update</c:if><c:if test="${empty user.id}">Create</c:if></button>
+                        <button class="btn btn-success" name="submit" type="submit">Save</button>
                     </div>
                     <div class="mt-3 text-right">
-                        <a href="<%=application.getContextPath()%>/users" class="text-success">Back to list of users</a>
+                        <a href="<%=application.getContextPath()%>/" class="text-success">Back to main page</a>
                     </div>
                 </form:form>
             </div>

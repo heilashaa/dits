@@ -1,5 +1,6 @@
 package com.dev_incubator.dits.controller;
 
+import com.dev_incubator.dits.config.security.CustomUserDetails;
 import com.dev_incubator.dits.persistence.entity.Role;
 import com.dev_incubator.dits.service.dto.UserDto;
 import com.dev_incubator.dits.service.interfaces.RoleService;
@@ -91,13 +92,13 @@ public class UserController {
             model.asMap().clear();
             return "redirect:/";
         }
-        if(nonNull(error) && error.equals("blocked")){
+        if (nonNull(error) && error.equals("blocked")) {
             model.addAttribute("report", messageSource.getMessage("user.blocked.by.admin"));
         }
-        if(nonNull(error) && error.equals("bad_credential")){
+        if (nonNull(error) && error.equals("bad_credential")) {
             model.addAttribute("report", messageSource.getMessage("user.bad.credentials"));
         }
-        if(nonNull(logout)){
+        if (nonNull(logout)) {
             model.addAttribute("report", messageSource.getMessage("user.logout.success"));
         }
         return "login";
@@ -156,8 +157,8 @@ public class UserController {
     @GetMapping(value = "/profile")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'TUTOR', 'USER')")
     public String showPersonalProfile(Model model) {
-        String authUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserDto user = userService.getUserByLogin(authUserName);
+        CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDto user = userService.getUserById(userDetails.getId());
         model.addAttribute("user", user);
         return "user-profile";
     }
@@ -168,9 +169,18 @@ public class UserController {
                                         BindingResult bindingResult,
                                         Model model,
                                         RedirectAttributes redirectAttributes) {
-        String authUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserDto userDto = userService.getUserByLogin(authUserName);
-        model.addAttribute("user", userDto);
-        return "user-profile";
+        UserDto existUser = userService.getUserById(user.getId());
+        user.setEnabled(true);
+        user.setRoles(existUser.getRoles());
+        if (bindingResult.getErrorCount() > 1) {
+            model.addAttribute("user", user);
+            return "user-profile";
+        }
+        if (!userService.saveUser(user)) {
+            model.addAttribute("loginError", messageSource.getMessage("user.already.exist"));
+            return "user-profile";
+        }
+        redirectAttributes.addFlashAttribute("report", messageSource.getMessage("user.profile.update.success"));
+        return "redirect:/users/profile";
     }
 }

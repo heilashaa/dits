@@ -31,7 +31,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="text-right py-2 mt-3">
+                    <div class="text-right py-2">
                         <button class="btn btn-success" name="submit" type="submit"><c:if test="${!empty topic.id}">Update</c:if><c:if test="${empty topic.id}">Create</c:if></button>
                     </div>
                 </form:form>
