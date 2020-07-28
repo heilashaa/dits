@@ -16,4 +16,6 @@ public interface UserService{
     boolean changeBlockStatus(Long id);
 
     UserDto getUserById(Long id);
+
+    UserDto getUserByLogin(String login);
 }

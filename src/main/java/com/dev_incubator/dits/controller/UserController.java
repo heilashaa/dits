@@ -92,7 +92,7 @@ public class UserController {
             return "redirect:/";
         }
         if(nonNull(error) && error.equals("blocked")){
-            model.addAttribute("report", messageSource.getMessage("user.blocked"));
+            model.addAttribute("report", messageSource.getMessage("user.blocked.by.admin"));
         }
         if(nonNull(error) && error.equals("bad_credential")){
             model.addAttribute("report", messageSource.getMessage("user.bad.credentials"));
@@ -151,5 +151,26 @@ public class UserController {
             redirectAttributes.addFlashAttribute("report", messageSource.getMessage("user.blocked"));
         }
         return "redirect:/users";
+    }
+
+    @GetMapping(value = "/profile")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'TUTOR', 'USER')")
+    public String showPersonalProfile(Model model) {
+        String authUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserDto user = userService.getUserByLogin(authUserName);
+        model.addAttribute("user", user);
+        return "user-profile";
+    }
+
+    @PostMapping(value = "/profile")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'TUTOR', 'USER')")
+    public String updatePersonalProfile(@ModelAttribute("user") @Valid UserDto user,
+                                        BindingResult bindingResult,
+                                        Model model,
+                                        RedirectAttributes redirectAttributes) {
+        String authUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserDto userDto = userService.getUserByLogin(authUserName);
+        model.addAttribute("user", userDto);
+        return "user-profile";
     }
 }

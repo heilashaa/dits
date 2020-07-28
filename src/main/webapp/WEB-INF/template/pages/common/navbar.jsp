@@ -44,7 +44,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Profile </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-03">
-                    <a class="dropdown-item" href="#">My account</a>
+                    <a class="dropdown-item" href="/users/profile">My account</a>
                     <sec:authorize access="hasAuthority('ADMIN')">
                         <a class="dropdown-item" href="<%=application.getContextPath()%>/users">All accounts</a>
                         <a class="dropdown-item" href="<%=application.getContextPath()%>/users/create">Create</a>

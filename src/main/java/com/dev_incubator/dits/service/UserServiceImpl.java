@@ -88,6 +88,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDto getUserByLogin(String login) {
+        return userMapper.toDto(userRepository.findByLogin(login));
+    }
+
+    @Override
     public boolean changeBlockStatus(Long id) {
         UserDto userDto = userMapper.toDto(userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(messageSource.getMessage("user.not.found"))));
