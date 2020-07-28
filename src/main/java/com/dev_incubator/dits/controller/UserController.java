@@ -88,6 +88,7 @@ public class UserController {
             Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!authentication.getPrincipal().equals("anonymousUser")) {
+            model.asMap().clear();
             return "redirect:/";
         }
         if(nonNull(error) && error.equals("blocked")){

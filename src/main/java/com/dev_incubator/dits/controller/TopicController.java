@@ -23,6 +23,4 @@ public class TopicController {
         model.addAttribute("topic", new TopicDto());
         return "topic";
     }
-
-
 }
