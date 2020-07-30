@@ -1,23 +1,25 @@
-//package com.dev_incubator.dits.persistence.entity;
-//
-//import lombok.Getter;
-//import lombok.Setter;
-//
-//import javax.persistence.*;
-//import java.util.HashSet;
-//import java.util.Set;
-//
-//@Entity
-//@Getter
-//@Setter
-//public class Literature {
-//
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Integer id;
-//    private String description;
-//    @ManyToOne
-//    private Set<Link> links = new HashSet<>();
-//    @OneToMany
-//    private Question question;
-//}
+package com.dev_incubator.dits.persistence.entity;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Getter
+@Setter
+@Table(name = "literature")
+public class Literature {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String description;
+    @ManyToOne(fetch = FetchType.LAZY,  optional = false)
+    @JoinColumn(name = "question_id", nullable = false, foreignKey = @ForeignKey(name = "literature_question_FK"))
+    private Question question;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "literature")
+    private Set<Link> links = new HashSet<>();
+}

@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -21,4 +23,6 @@ public class Test {
     @ManyToOne(fetch = FetchType.LAZY,  optional = false)
     @JoinColumn(name = "topic_id", nullable = false, foreignKey = @ForeignKey(name = "test_topic_FK"))
     private Topic topic;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "test")
+    private Set<Question> questions = new HashSet<>();
 }

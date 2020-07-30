@@ -36,4 +36,6 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")}, foreignKey = @ForeignKey(name = "role_user_FK"),
             inverseJoinColumns = {@JoinColumn(name = "role_id")}, inverseForeignKey = @ForeignKey(name = "user_role_FK"))
     private Set<Role> roles = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<Statistic> statistics = new HashSet<>();
 }
