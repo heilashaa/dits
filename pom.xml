@@ -21,6 +21,7 @@
         <validation-api.version>1.1.0.Final</validation-api.version>
         <lombok.version>1.18.10</lombok.version>
         <apache.tiles.version>3.0.8</apache.tiles.version>
+        <mail>1.6.4</mail>
         <junit.version>4.12</junit.version>
         <mockito.version>1.10.19</mockito.version>
         <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -130,6 +131,19 @@
             <artifactId>tiles-jsp</artifactId>
             <version>${apache.tiles.version}</version>
         </dependency>
+        <!--mail start-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <version>${mail}</version>
+        </dependency>
+
+        <!--mail finish-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

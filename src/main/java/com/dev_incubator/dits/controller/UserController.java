@@ -3,6 +3,7 @@ package com.dev_incubator.dits.controller;
 import com.dev_incubator.dits.config.security.CustomUserDetails;
 import com.dev_incubator.dits.persistence.entity.Role;
 import com.dev_incubator.dits.service.dto.UserDto;
+import com.dev_incubator.dits.service.interfaces.MailService;
 import com.dev_incubator.dits.service.interfaces.RoleService;
 import com.dev_incubator.dits.service.interfaces.UserService;
 import com.dev_incubator.dits.util.MessageSourceFacade;
@@ -36,6 +37,8 @@ public class UserController {
 
     private final MessageSourceFacade messageSource;
 
+    private final MailService mailService;
+
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public String getAllUsers(Model model) {
@@ -68,7 +71,6 @@ public class UserController {
         } else {
             redirectAttributes.addFlashAttribute("report", messageSource.getMessage("user.update.success"));
         }
-
         return "redirect:/users";
     }
 
@@ -80,7 +82,6 @@ public class UserController {
         model.addAttribute("user", user);
         return "user";
     }
-
 
     @GetMapping(value = "/login")
     public String login(
@@ -128,11 +129,14 @@ public class UserController {
         if (bindingResult.getErrorCount() > 1) {
             return "registration";
         }
+        String password = user.getPassword();
         if (!userService.saveUser(user)) {
             model.addAttribute("loginError", messageSource.getMessage("user.already.exist"));
             return "registration";
         }
         redirectAttributes.addFlashAttribute("report", messageSource.getMessage("user.registration.success"));
+        String emailMessage = mailService.getRegistrationMessage(user.getFirstName(), user.getLastName(), user.getLogin(), password);
+        mailService.sendEmail(user.getEmail(), "DITS| Registration", emailMessage);
         return "redirect:/users/login";
     }
 
@@ -146,10 +150,15 @@ public class UserController {
     public String changeUserBlockStatus(
             @PathVariable(value = "userId", required = true) Long userId,
             RedirectAttributes redirectAttributes) {
+        UserDto user = userService.getUserById(userId);
         if (userService.changeBlockStatus(userId)) {
             redirectAttributes.addFlashAttribute("report", messageSource.getMessage("user.unblocked"));
+            String emailMessage = mailService.getUnblockMessage(user.getFirstName(), user.getLastName());
+            mailService.sendEmail(user.getEmail(), "DITS| Unblocked", emailMessage);
         } else {
             redirectAttributes.addFlashAttribute("report", messageSource.getMessage("user.blocked"));
+            String emailMessage = mailService.getBlockMessage(user.getFirstName(), user.getLastName());
+            mailService.sendEmail(user.getEmail(), "DITS| Blocked", emailMessage);
         }
         return "redirect:/users";
     }

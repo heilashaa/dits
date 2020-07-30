@@ -20,15 +20,6 @@ public class Topic {
     private String name;
     @Column(nullable = false)
     private String description;
-//    @OneToMany
-//    private Set<Test> tests;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "topic")
+    private Set<Test> tests = new HashSet<>();
 }
-
-
-
-//    @ManyToOne(fetch = FetchType.LAZY,  optional = false)
-//    @JoinColumn(name = "category_id", nullable = false, foreignKey = @ForeignKey(name = "campaign_category_FK"))
-//    private Category category;
-//
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "campaign")
-//    private Set<Bonus> bonuses = new HashSet<>();
