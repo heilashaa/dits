@@ -17,8 +17,7 @@ public class Statistic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @CreationTimestamp
-    @UpdateTimestamp
+    @CreationTimestamp
     private LocalDateTime date;
     private boolean correct;
     @ManyToOne(fetch = FetchType.LAZY,  optional = false)

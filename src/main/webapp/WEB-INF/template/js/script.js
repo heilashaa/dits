@@ -18,3 +18,8 @@ window.onload = function () {
         fadeOutnojquery(hellopreloader);
     }, 0);
 };
+
+//datatables
+$(document).ready(function() {
+    $('#statisticDataTable').DataTable();
+} );

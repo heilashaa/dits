@@ -9968,7 +9968,7 @@ table.table a.btn.btn-black {
 
 .pagination .page-item.active .page-link {
     color: #fff;
-    background-color: #4285f4;
+    background-color: #488e11;
     border-radius: .125rem;
     -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -9977,7 +9977,7 @@ table.table a.btn.btn-black {
 }
 
 .pagination .page-item.active .page-link:hover {
-    background-color: #4285f4
+    background-color: #488e11;
 }
 
 .pagination .page-item.disabled .page-link {
@@ -10030,11 +10030,11 @@ table.table a.btn.btn-black {
 }
 
 .pagination.pg-blue .page-item.active .page-link {
-    background-color: #4285f4
+    background-color: #488e11
 }
 
 .pagination.pg-blue .page-item.active .page-link:hover {
-    background-color: #4285f4
+    background-color: #488e11
 }
 
 .pagination.pg-red .page-item.active .page-link {
@@ -10070,11 +10070,11 @@ table.table a.btn.btn-black {
 }
 
 .pagination.pg-blue-grey .page-item.active .page-link {
-    background-color: #3f729b
+    background-color: #488e11
 }
 
 .pagination.pg-blue-grey .page-item.active .page-link:hover {
-    background-color: #3f729b
+    background-color: #488e11
 }
 
 .pagination.pg-amber .page-item.active .page-link {
@@ -10708,9 +10708,9 @@ body.scrollable {
 .md-form input[type="phone"]:not(.browser-default):focus:not([readonly]),
 .md-form input[type="search-md"]:focus:not([readonly]),
 .md-form textarea.md-textarea:focus:not([readonly]) {
-    border-bottom: 1px solid #4285f4;
-    -webkit-box-shadow: 0 1px 0 0 #4285f4;
-    box-shadow: 0 1px 0 0 #4285f4
+    border-bottom: 1px solid #488e11;
+    -webkit-box-shadow: 0 1px 0 0 #488e11;
+    box-shadow: 0 1px 0 0 #488e11
 }
 
 .md-form input:not([type]):focus:not([readonly])+label,
@@ -10728,7 +10728,7 @@ body.scrollable {
 .md-form input[type="phone"]:not(.browser-default):focus:not([readonly])+label,
 .md-form input[type="search-md"]:focus:not([readonly])+label,
 .md-form textarea.md-textarea:focus:not([readonly])+label {
-    color: #4285f4
+    color: #488e11
 }
 
 .md-form input:not([type])+label::after,

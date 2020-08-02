@@ -136,7 +136,7 @@ public class UserController {
         }
         redirectAttributes.addFlashAttribute("report", messageSource.getMessage("user.registration.success"));
         String emailMessage = mailService.getRegistrationMessage(user.getFirstName(), user.getLastName(), user.getLogin(), password);
-        mailService.sendEmail(user.getEmail(), "DITS| Registration", emailMessage);
+        mailService.sendEmail(user.getEmail(), "DITS | Registration", emailMessage);
         return "redirect:/users/login";
     }
 
@@ -154,11 +154,11 @@ public class UserController {
         if (userService.changeBlockStatus(userId)) {
             redirectAttributes.addFlashAttribute("report", messageSource.getMessage("user.unblocked"));
             String emailMessage = mailService.getUnblockMessage(user.getFirstName(), user.getLastName());
-            mailService.sendEmail(user.getEmail(), "DITS| Unblocked", emailMessage);
+            mailService.sendEmail(user.getEmail(), "DITS | Unblocked", emailMessage);
         } else {
             redirectAttributes.addFlashAttribute("report", messageSource.getMessage("user.blocked"));
             String emailMessage = mailService.getBlockMessage(user.getFirstName(), user.getLastName());
-            mailService.sendEmail(user.getEmail(), "DITS| Blocked", emailMessage);
+            mailService.sendEmail(user.getEmail(), "DITS | Blocked", emailMessage);
         }
         return "redirect:/users";
     }
