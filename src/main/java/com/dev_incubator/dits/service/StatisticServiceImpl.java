@@ -1,36 +1,58 @@
 package com.dev_incubator.dits.service;
 
+import com.dev_incubator.dits.exception.UserHasNoStatisticException;
+import com.dev_incubator.dits.persistence.entity.PersonalStatistic;
 import com.dev_incubator.dits.persistence.entity.QuestionStatistic;
 import com.dev_incubator.dits.persistence.entity.TestStatistic;
-import com.dev_incubator.dits.persistence.repository.QuestionStatisticRepository;
-import com.dev_incubator.dits.persistence.repository.TestStatisticRepository;
+import com.dev_incubator.dits.persistence.entity.UserStatistic;
+import com.dev_incubator.dits.persistence.repository.*;
+import com.dev_incubator.dits.service.dto.UserDto;
+import com.dev_incubator.dits.service.dto.mapper.UserMapper;
 import com.dev_incubator.dits.service.interfaces.StatisticService;
+import com.dev_incubator.dits.util.MessageSourceFacade;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
-
+@AllArgsConstructor
 public class StatisticServiceImpl implements StatisticService {
 
     private final TestStatisticRepository testStatisticRepository;
 
     private final QuestionStatisticRepository questionStatisticRepository;
 
-    public StatisticServiceImpl(TestStatisticRepository testStatisticRepository, QuestionStatisticRepository questionStatisticRepository) {
-        this.testStatisticRepository = testStatisticRepository;
-        this.questionStatisticRepository = questionStatisticRepository;
-    }
+    private final UserStatisticRepository userStatisticRepository;
+
+    private final PersonalStatisticRepository personalStatisticRepository;
+
+    private final RoleRepository roleRepository;
+
+    private final MessageSourceFacade messageSource;
+
+    private final UserMapper userMapper;
 
     @Override
-    public List<TestStatistic> getStatisticByTests(){
+    public List<TestStatistic> getStatisticByTests() {
         return testStatisticRepository.findAll();
     }
 
     @Override
-    public List<QuestionStatistic> getStatisticByQuestions(){
+    public List<QuestionStatistic> getStatisticByQuestions() {
         return questionStatisticRepository.findAll();
+    }
+
+    @Override
+    public List<UserStatistic> getStatisticByUsers() {
+        return userStatisticRepository.findAll();
+    }
+
+    @Override
+    public List<PersonalStatistic> getPersonalStatistic(UserDto user) {
+        return personalStatisticRepository.findAllByUser(userMapper.fromDto(user, roleRepository.findAll()))
+                .orElseThrow(() -> new UserHasNoStatisticException(messageSource.getMessage("user.has.no.statistic")));
     }
 }

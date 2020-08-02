@@ -16,6 +16,7 @@ import javax.persistence.*;
         value = "SELECT row_number() over (ORDER BY u.id)   AS id, " +
                 "u.id                                       AS user_id, " +
                 "t.id                                       AS test_id, " +
+                "q.id                                       AS question_id, " +
                 "count(DISTINCT  s.date)                    AS amountPass, " +
                 "sum(s.correct)                             AS correct, " +
                 "count(s.correct)                           AS total " +
@@ -26,9 +27,9 @@ import javax.persistence.*;
                 "ON q.id = s.question_id " +
                 "LEFT JOIN test t " +
                 "ON t.id = q.test_id " +
-                "GROUP BY u.id, t.id")
+                "GROUP BY u.id, t.id, q.id")
 @Synchronize({"Statistic", "Test", "Question", "User"})
-public class UserStatistic {
+public class PersonalStatistic {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
@@ -39,6 +40,9 @@ public class UserStatistic {
     @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "test_id", nullable = false)
     private Test test;
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "question_id", nullable = false)
+    private Question question;
     private Integer amountPass;
     private Integer correct;
     private Integer total;

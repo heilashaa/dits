@@ -29,6 +29,14 @@ public class AdviceController {
         return "redirect:" + request.getRequestURI();
     }
 
+    @ExceptionHandler({UserHasNoStatisticException.class})
+    public String handleUserHasNoStatisticException(
+            UserHasNoStatisticException e,
+            RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("report", e.getMessage());
+        return "redirect:/";
+    }
+
     @ExceptionHandler({UserNotFoundException.class, TopicNotFoundException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public String handleUserNotFoundException(AppException e, HttpServletRequest request) {

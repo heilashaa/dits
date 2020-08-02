@@ -13,11 +13,11 @@ import javax.persistence.*;
 @Setter
 @Immutable
 @Subselect(
-        value = "select q.id AS id, " +
-                "q.id AS question_id, " +
-                "count(DISTINCT  s.date) AS amountPass, " +
-                "sum(s.correct) AS correct, " +
-                "count(s.correct) AS total " +
+        value = "SELECT row_number() over (ORDER BY q.id)   AS id, " +
+                "q.id                                       AS question_id, " +
+                "COUNT(DISTINCT  s.date)                    AS amountPass, " +
+                "SUM(s.correct)                             AS correct, " +
+                "COUNT(s.correct)                           AS total " +
                 "FROM question q " +
                 "RIGHT JOIN statistic s " +
                 "ON q.id = s.question_id " +
