@@ -28,10 +28,15 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Tests </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-01">
-                    <a class="dropdown-item" href="#">Create</a>
-                    <a class="dropdown-item" href="#">Edit</a>
-                    <a class="dropdown-item" href="#">Delete</a>
-                    <a class="dropdown-item" href="#">Pass</a>
+                    <sec:authorize access="hasAnyAuthority('ADMIN', 'TUTOR')">
+                        <a class="dropdown-item" href="/tests">All tests</a>
+                        <a class="dropdown-item" href="/tests/create">Create</a>
+                        <a class="dropdown-item" href="/tests/edit">Edit</a>
+                        <a class="dropdown-item" href="/tests/delete">Delete</a>
+                    </sec:authorize>
+                    <sec:authorize access="hasAnyAuthority('USER')">
+                        <a class="dropdown-item" href="/tests">Pass</a>
+                    </sec:authorize>
                 </div>
             </li>
             <li class="nav-item dropdown">
