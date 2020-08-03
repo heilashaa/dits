@@ -59,6 +59,72 @@
         </ul>
     </div>
 </div>
+
+
+<div class="row">
+    <div class="col">
+        <table class="table table-hover table-sm">
+            <thead class="special-color-dark white-text">
+            <tr>
+                <th>Function</th>
+                <th class="w-20 text-center">Admin</th>
+                <th class="w-20 text-center">Tutor</th>
+                <th class="w-20 text-center">User</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Add, edit & delete a member</td>
+                    <td class="w-20 text-center">+</td>
+                    <td class="w-20 text-center">-</td>
+                    <td class="w-20 text-center">-</td>
+                </tr>
+                <tr>
+                    <td>Watch the member's progress grid</td>
+                    <td class="w-20 text-center">+</td>
+                    <td class="w-20 text-center">+</td>
+                    <td class="w-20 text-center">-</td>
+                </tr>
+                <tr>
+                    <td>Watch the test detail page</td>
+                    <td class="w-20 text-center">+</td>
+                    <td class="w-20 text-center">+</td>
+                    <td class="w-20 text-center">+</td>
+                </tr>
+                <tr>
+                    <td>Watch the member's test manage grid</td>
+                    <td class="w-20 text-center">+</td>
+                    <td class="w-20 text-center">+</td>
+                    <td class="w-20 text-center">-</td>
+                </tr>
+                <tr>
+                    <td>Check the test's state as success or fail</td>
+                    <td class="w-20 text-center">+</td>
+                    <td class="w-20 text-center">+</td>
+                    <td class="w-20 text-center">-</td>
+                </tr>
+                <tr>
+                    <td>Add, edit & delete a new test</td>
+                    <td class="w-20 text-center">-</td>
+                    <td class="w-20 text-center">+</td>
+                    <td class="w-20 text-center">-</td>
+                </tr>
+                <tr>
+                    <td>Add, edit & delete a topic</td>
+                    <td class="w-20 text-center">+</td>
+                    <td class="w-20 text-center">-</td>
+                    <td class="w-20 text-center">-</td>
+                </tr>
+                <tr>
+                    <td>Watch the after test review detail page</td>
+                    <td class="w-20 text-center">-</td>
+                    <td class="w-20 text-center">-</td>
+                    <td class="w-20 text-center">+</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 <hr>
 <h4>Authors:</h4>
 <ul>
