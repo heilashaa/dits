@@ -15,10 +15,14 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-00" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Statistics </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-00">
-                    <a class="dropdown-item" href="<%=application.getContextPath()%>/statistic/by-tests">By test</a>
-                    <a class="dropdown-item" href="<%=application.getContextPath()%>/statistic/by-questions">by questions</a>
-                    <a class="dropdown-item" href="<%=application.getContextPath()%>/statistic/by-users">By users</a>
-                    <a class="dropdown-item" href="<%=application.getContextPath()%>/statistic/personal">Personal</a>
+                    <sec:authorize access="hasAnyAuthority('ADMIN', 'TUTOR')">
+                        <a class="dropdown-item" href="<%=application.getContextPath()%>/statistic/by-tests">By test</a>
+                        <a class="dropdown-item" href="<%=application.getContextPath()%>/statistic/by-questions">By questions</a>
+                        <a class="dropdown-item" href="<%=application.getContextPath()%>/statistic/by-users">By users</a>
+                    </sec:authorize>
+                    <sec:authorize access="hasAnyAuthority('USER')">
+                        <a class="dropdown-item" href="<%=application.getContextPath()%>/statistic/personal">Personal</a>
+                    </sec:authorize>
                 </div>
             </li>
             <li class="nav-item dropdown">

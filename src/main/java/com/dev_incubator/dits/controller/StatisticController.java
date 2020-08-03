@@ -22,7 +22,7 @@ public class StatisticController {
     private final UserService userService;
 
     @GetMapping(value = "/by-tests")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'TUTOR')")
     public String getStatisticByTests(Model model) {
         model.addAttribute("listStatistic", statisticService.getStatisticByTests());
         model.addAttribute("statisticType", "by-tests");
@@ -30,7 +30,7 @@ public class StatisticController {
     }
 
     @GetMapping(value = "/by-questions")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'TUTOR')")
     public String getStatisticByQuestions(Model model) {
         model.addAttribute("listStatistic", statisticService.getStatisticByQuestions());
         model.addAttribute("statisticType", "by-questions");
@@ -38,7 +38,7 @@ public class StatisticController {
     }
 
     @GetMapping(value = "/by-users")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'TUTOR')")
     public String getStatisticByUsers(Model model) {
         model.addAttribute("listStatistic", statisticService.getStatisticByUsers());
         model.addAttribute("statisticType", "by-users");
