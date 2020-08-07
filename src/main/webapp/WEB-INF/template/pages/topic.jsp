@@ -31,8 +31,28 @@
                             </div>
                         </div>
                     </div>
-                    <div class="text-right py-2">
-                        <button class="btn btn-success" name="submit" type="submit"><c:if test="${!empty topic.id}">Update</c:if><c:if test="${empty topic.id}">Create</c:if></button>
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <c:if test="${!empty topic.id}">
+                                <div class="text-left py-2">
+                                    <c:if test="${topic.testAmount > 0}">
+                                        This topic contains
+                                        <span class="badge badge-success badge-pill">${topic.testAmount}</span>
+                                        test(s) that have been passed
+                                        <span class="badge badge-success badge-pill">${topic.amountPassedTests}</span>
+                                        times
+                                    </c:if>
+                                    <c:if test="${topic.testAmount == 0}">
+                                        There are no tests for this topic
+                                    </c:if>
+                                </div>
+                            </c:if>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-right py-2">
+                                <button class="btn btn-success" name="submit" type="submit"><c:if test="${!empty topic.id}">Update</c:if><c:if test="${empty topic.id}">Create</c:if></button>
+                            </div>
+                        </div>
                     </div>
                 </form:form>
             </div>
@@ -53,6 +73,8 @@
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
+                    <th class="text-center">Passed tests</th>
+                    <th class="text-center">Tests</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -62,6 +84,16 @@
                     <tr>
                         <td>${topic.name}</td>
                         <td>${topic.description}</td>
+                        <td class="text-center">
+                            <c:if test="${topic.amountPassedTests > 0}">
+                                <span class="badge badge-success badge-pill">${topic.amountPassedTests}</span>
+                            </c:if>
+                        </td>
+                        <td class="text-center">
+                            <c:if test="${topic.testAmount > 0}">
+                                <span class="badge badge-success badge-pill">${topic.testAmount}</span>
+                            </c:if>
+                        </td>
                         <td><a href="<%=application.getContextPath()%>/topics/edit/${topic.id}"><i class="fas fa-edit"></i></a></td>
                         <td><a href="<%=application.getContextPath()%>/topics/delete/${topic.id}"><i class="fas fa-trash-alt"></i></a></td>
                     </tr>

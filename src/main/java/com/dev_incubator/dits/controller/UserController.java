@@ -40,21 +40,21 @@ public class UserController {
     private final MailService mailService;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String getAllUsers(Model model) {
         model.addAttribute("listUsers", userService.getAllUsers());
         return "user-list";
     }
 
     @GetMapping(value = "/create")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String showUserForm(Model model) {
         model.addAttribute("user", new UserDto());
         return "user";
     }
 
     @PostMapping(value = "/create")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String saveUser(@ModelAttribute("user") @Valid UserDto user,
                            BindingResult bindingResult,
                            Model model,
@@ -75,7 +75,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/edit/{userId}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String showEditUserForm(@PathVariable(value = "userId", required = true) Long userId,
                                    Model model) {
         UserDto user = userService.getUserById(userId);
@@ -106,6 +106,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/logout")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'TUTOR', 'USER')")
     public String logout(HttpServletRequest request, HttpServletResponse response, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
@@ -146,7 +147,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/re-block/{userId}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String changeUserBlockStatus(
             @PathVariable(value = "userId", required = true) Long userId,
             RedirectAttributes redirectAttributes) {

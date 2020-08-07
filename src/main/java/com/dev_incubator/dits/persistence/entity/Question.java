@@ -17,12 +17,12 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
-    @ManyToOne(fetch = FetchType.LAZY,  optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "test_id", nullable = false, foreignKey = @ForeignKey(name = "question_test_FK"))
     private Test test;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "question")
     private Set<Literature> literature = new HashSet<>();
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "question")
     private Set<Answer> answers = new HashSet<>();
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
     private Set<Statistic> statistics = new HashSet<>();

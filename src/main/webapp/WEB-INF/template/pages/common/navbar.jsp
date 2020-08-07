@@ -39,14 +39,6 @@
                     </sec:authorize>
                 </div>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Questions </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-02">
-                    <a class="dropdown-item" href="#">Create</a>
-                    <a class="dropdown-item" href="#">Edit</a>
-                    <a class="dropdown-item" href="#">Delete</a>
-                </div>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="<%=application.getContextPath()%>/topics"> Topics </a>
             </li>

@@ -15,7 +15,7 @@ public class Link {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String link;
-    @ManyToOne(fetch = FetchType.LAZY,  optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "literature_id", nullable = false, foreignKey = @ForeignKey(name = "link_literature_FK"))
     private Literature literature;
 }

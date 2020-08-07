@@ -51,6 +51,7 @@ INSERT INTO dits_test.question (description, test_id) VALUES
 
 INSERT INTO dits_test.literature (description, question_id) VALUES
 ('Герберт Шилдт Java 8. Полное руководство 9 издание.', 1),
+('Герберт Шилдт Java 8. НЕ Полное руководство 9 издание.', 1),
 ('Хорстманн К.С. - Java SE 8. Базовый курс - 2015.', 2),
 ('Герберт Шилдт Java 8. Полное руководство 9 издание.', 3),
 ('Хорстманн К.С. - Java SE 8. Базовый курс - 2015.', 4),
@@ -68,6 +69,7 @@ INSERT INTO dits_test.literature (description, question_id) VALUES
 
 INSERT INTO dits_test.link (link, literature_id) VALUES
 ('https://metanit.com/java/tutorial/2.4.php', 1),
+('https://metanit.com/java/tutorial/2.12.php', 1),
 ('https://metanit.com/java/tutorial/2.12.php', 2),
 ('https://metanit.com/java/tutorial/4.2.php', 3),
 ('https://vertex-academy.com/tutorials/ru/chto-takoe-oop/', 4),
@@ -101,7 +103,7 @@ INSERT INTO dits_test.answer (description, correct, question_id) VALUES
 ('Объектно-ориентированное программирование — просто красивое понятие. Если вдуматься, оно не несет дополнительной смысловой нагрузки, просто программисты любят аббревиатуры, так области их знаний выглядят сложнее.', 0, 4),
 ('Очень одинокий программист.', 0, 4),
 ('Уровень сложности программы. Все операторы делятся на классы в зависимости от сложности их использования.', 0, 5),
-('Базовым элементом объектно-ориентирован­ного программирования в языке Java.', 1, 5),
+('Базовым элементом объектно-ориентированного программирования в языке Java.', 1, 5),
 ('Просто одно из возможных названий переменной.', 0, 5),
 ('Такое понятие есть только в C++, в Java такого понятия нет.', 0, 5),
 ('class MyClass {}', 1, 6),

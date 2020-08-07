@@ -16,7 +16,7 @@ public class Answer {
     private Long id;
     private String description;
     private boolean correct;
-    @ManyToOne(fetch = FetchType.LAZY,  optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "question_id", nullable = false, foreignKey = @ForeignKey(name = "answer_question_FK"))
     private Question question;
 }

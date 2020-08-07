@@ -20,9 +20,9 @@ public class Test {
     private String name;
     @Column(nullable = false)
     private String description;
-    @ManyToOne(fetch = FetchType.LAZY,  optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "topic_id", nullable = false, foreignKey = @ForeignKey(name = "test_topic_FK"))
     private Topic topic;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "test")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "test")
     private Set<Question> questions = new HashSet<>();
 }

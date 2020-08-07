@@ -25,7 +25,7 @@ public class TopicController {
     private final MessageSourceFacade messageSource;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String getAllTopics(Model model) {
         model.addAttribute("listTopics", topicService.getAllTopics());
         model.addAttribute("topic", new TopicDto());
@@ -33,7 +33,7 @@ public class TopicController {
     }
 
     @GetMapping(value = "/edit/{topicId}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String editTopic(@PathVariable(value = "topicId", required = true) Long topicId,
                             Model model) {
         TopicDto topic = topicService.getTopicById(topicId);
@@ -43,7 +43,7 @@ public class TopicController {
     }
 
     @GetMapping(value = "/delete/{topicId}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String deleteTopic(@PathVariable(value = "topicId", required = true) Long topicId,
                               RedirectAttributes redirectAttributes) {
         topicService.deleteTopicById(topicId);
@@ -52,7 +52,7 @@ public class TopicController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String saveTopic(@ModelAttribute("topic") @Valid TopicDto topic,
                             BindingResult bindingResult,
                             Model model,

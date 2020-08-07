@@ -1,10 +1,7 @@
 package com.dev_incubator.dits.service;
 
 import com.dev_incubator.dits.exception.UserHasNoStatisticException;
-import com.dev_incubator.dits.persistence.entity.PersonalStatistic;
-import com.dev_incubator.dits.persistence.entity.QuestionStatistic;
-import com.dev_incubator.dits.persistence.entity.TestStatistic;
-import com.dev_incubator.dits.persistence.entity.UserStatistic;
+import com.dev_incubator.dits.persistence.entity.*;
 import com.dev_incubator.dits.persistence.repository.*;
 import com.dev_incubator.dits.service.dto.UserDto;
 import com.dev_incubator.dits.service.dto.mapper.UserMapper;
@@ -28,6 +25,8 @@ public class StatisticServiceImpl implements StatisticService {
     private final UserStatisticRepository userStatisticRepository;
 
     private final PersonalStatisticRepository personalStatisticRepository;
+
+    private final TopicStatisticRepository topicStatisticRepository;
 
     private final RoleRepository roleRepository;
 
@@ -54,5 +53,10 @@ public class StatisticServiceImpl implements StatisticService {
     public List<PersonalStatistic> getPersonalStatistic(UserDto user) {
         return personalStatisticRepository.findAllByUser(userMapper.fromDto(user, roleRepository.findAll()))
                 .orElseThrow(() -> new UserHasNoStatisticException(messageSource.getMessage("user.has.no.statistic")));
+    }
+
+    @Override
+    public List<TopicStatistic> getStatisticByTopics() {
+        return topicStatisticRepository.findAll();
     }
 }

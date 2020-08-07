@@ -37,6 +37,10 @@
         <put-attribute name="title" value="DITS | Topic" />
         <put-attribute name="content" value="/WEB-INF/template/pages/topic.jsp" />
     </definition>
+    <definition name="test-list" extends="layout.definition">
+        <put-attribute name="title" value="DITS | Tests" />
+        <put-attribute name="content" value="/WEB-INF/template/pages/test-list.jsp" />
+    </definition>
     <definition name="statistic" extends="layout.definition">
         <put-attribute name="title" value="DITS | Statistic" />
         <put-attribute name="content" value="/WEB-INF/template/pages/statistic.jsp" />

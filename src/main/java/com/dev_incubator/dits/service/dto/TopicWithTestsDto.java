@@ -2,17 +2,18 @@ package com.dev_incubator.dits.service.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
-public class TopicDto {
+public class TopicWithTestsDto {
 
     private Long id;
-    @NotEmpty(message = "{topic.name.not.empty}")
     private String name;
-    @NotEmpty(message = "{topic.description.not.empty}")
     private String description;
     private Integer testAmount;
     private Integer amountPassedTests;
+    private List<TestDto> tests = new ArrayList<>();
 }

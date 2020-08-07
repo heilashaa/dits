@@ -11,7 +11,6 @@ import java.util.Set;
 @Table(name = "user")
 @Getter
 @Setter
-//@Proxy
 public class User {
 
     @Id

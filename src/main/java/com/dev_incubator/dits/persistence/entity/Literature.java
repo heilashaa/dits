@@ -17,9 +17,9 @@ public class Literature {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
-    @ManyToOne(fetch = FetchType.LAZY,  optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "question_id", nullable = false, foreignKey = @ForeignKey(name = "literature_question_FK"))
     private Question question;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "literature")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "literature")
     private Set<Link> links = new HashSet<>();
 }
