@@ -22,7 +22,7 @@
         <lombok.version>1.18.10</lombok.version>
         <apache.tiles.version>3.0.8</apache.tiles.version>
         <mail>1.6.4</mail>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <mockito.version>1.10.19</mockito.version>
         <failOnMissingWebXml>false</failOnMissingWebXml>
     </properties>
